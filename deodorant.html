@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Social — Social Media That Drives Business</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080909;
+      --card: #101111;
+      --card2: #141515;
+      --text: #f4f4f1;
+      --muted: #999b98;
+      --line: rgba(255,255,255,.09);
+      --accent: #d9ff63;
+      --accent-dark: #b9df42;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAV */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8,9,9,.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .logo {
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      color: #b8bab7;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-btn {
+      background: var(--accent);
+      color: #10120b;
+      padding: 11px 19px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .nav-btn:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 150px 6% 90px;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      background: var(--accent);
+      opacity: .055;
+      filter: blur(130px);
+      border-radius: 50%;
+      right: -250px;
+      top: 50px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      padding: 8px 13px;
+      border-radius: 100px;
+      color: #c8cac5;
+      font-size: 12px;
+      margin-bottom: 28px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    h1 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(52px, 8vw, 102px);
+      line-height: .96;
+      letter-spacing: -5px;
+      max-width: 1000px;
+      margin-bottom: 30px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 620px;
+      margin-bottom: 38px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: #10120b;
+      padding: 15px 24px;
+      border-radius: 100px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      background: white;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--line);
+      padding: 15px 24px;
+      border-radius: 100px;
+      color: #ddd;
+      transition: .25s;
+    }
+
+    .secondary-btn:hover {
+      background: rgba(255,255,255,.06);
+    }
+
+    /* TRUST BAR */
+
+    .trust {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 25px 6%;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      color: #777a76;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      flex-wrap: wrap;
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 120px 6%;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 5vw, 65px);
+      letter-spacing: -3px;
+      line-height: 1;
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 570px;
+      line-height: 1.7;
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      margin-top: 65px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .service {
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #111313, #0c0d0d);
+      padding: 32px;
+      min-height: 270px;
+      border-radius: 18px;
+      transition: .3s;
+    }
+
+    .service:hover {
+      transform: translateY(-6px);
+      border-color: rgba(217,255,99,.35);
+    }
+
+    .service-number {
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 70px;
+    }
+
+    .service h3 {
+      font-family: "Manrope";
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .service p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* RESULTS */
+
+    .results {
+      background: #0d0f0f;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 65px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .stat {
+      padding: 45px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-family: "Manrope";
+      font-size: 58px;
+      letter-spacing: -3px;
+      margin-bottom: 8px;
+    }
+
+    .stat-number span {
+      color: var(--accent);
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PROCESS */
+
+    .process {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    .steps {
+      margin-top: 45px;
+    }
+
+    .step {
+      display: flex;
+      gap: 25px;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step-num {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .step h3 {
+      margin-bottom: 7px;
+      font-size: 18px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* MOCKUP */
+
+    .phone {
+      width: 310px;
+      height: 590px;
+      background: #161818;
+      border: 7px solid #242626;
+      border-radius: 40px;
+      margin: auto;
+      padding: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 100px;
+      height: 24px;
+      background: #050606;
+      border-radius: 20px;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .social-card {
+      margin-top: 40px;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #222525;
+    }
+
+    .fake-image {
+      height: 260px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(217,255,99,.5), transparent 25%),
+        linear-gradient(135deg,#252a26,#080909);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Manrope";
+      font-size: 35px;
+      letter-spacing: -2px;
+    }
+
+    .social-info {
+      padding: 16px;
+    }
+
+    .social-line {
+      height: 8px;
+      width: 80%;
+      background: #444847;
+      border-radius: 10px;
+      margin-bottom: 9px;
+    }
+
+    .social-line.short {
+      width: 50%;
+    }
+
+    /* TESTIMONIAL */
+
+    .testimonial {
+      margin-top: 60px;
+      padding: 55px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(145deg,#111313,#0b0c0c);
+    }
+
+    .quote {
+      font-family: "Manrope";
+      font-size: clamp(25px,4vw,43px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      max-width: 900px;
+    }
+
+    .quote-author {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+
+    .cta {
+      text-align: center;
+      padding: 150px 6%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--accent);
+      opacity: .06;
+      filter: blur(120px);
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta h2 {
+      font-family: "Manrope";
+      font-size: clamp(45px,7vw,85px);
+      letter-spacing: -4px;
+      line-height: .98;
+      margin-bottom: 25px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin: auto;
+      max-width: 550px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 6%;
+      display: flex;
+      justify-content: space-between;
+      color: #666965;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      nav {
+        padding: 18px 5%;
+      }
+
+      .hero {
+        padding: 140px 5% 90px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .trust {
+        gap: 20px;
+        text-align: center;
+      }
+
+      section {
+        padding: 90px 5%;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .process {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .phone {
+        width: 280px;
+      }
+
+      .testimonial {
+        padding: 30px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" class="logo">LOCAL<span>.</span></a>
+
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#results">Results</a>
+      <a href="#process">Process</a>
+    </div>
+
+    <a href="#contact" class="nav-btn">Get Started</a>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="glow"></div>
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        <div class="dot"></div>
+        Social media for local businesses
+      </div>
+
+      <h1>
+        Make your business<br>
+        <span>impossible to ignore.</span>
+      </h1>
+
+      <p class="hero-description">
+        We create, manage, and grow social media accounts for local businesses
+        that want more attention, more customers, and a stronger brand.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#contact" class="primary-btn">Book a Free Call →</a>
+        <a href="#services" class="secondary-btn">See What We Do</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TRUST -->
+  <div class="trust">
+    <span>Restaurants</span
