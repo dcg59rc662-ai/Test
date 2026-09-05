@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALÉRIE — Maison de Parfums</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: #0b0b0a;
+    color: #eeeae0;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+}
+/* ================= NAV ================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    z-index: 100;
+    background: rgba(11,11,10,.72);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 27px;
+    letter-spacing: 7px;
+    color: #f4f0e8;
+}
+.nav-links {
+    display: flex;
+    gap: 42px;
+    list-style: none;
+}
+.nav-links a {
+    color: #aaa69c;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+.nav-links a:hover {
+    color: #e7d2a0;
+}
+.nav-button {
+    border: 1px solid #716143;
+    padding: 12px 20px;
+    color: #ddd3c0;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+/* ================= HERO ================= */
+.hero {
+    height: 100vh;
+    min-height: 720px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #27231d 0%,
+            #12110f 38%,
+            #0b0b0a 72%
+        );
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.55),
+            transparent 50%,
+            rgba(0,0,0,.55)
+        );
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 40px;
+}
+.eyebrow {
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: #b9a16e;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.hero h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-size: clamp(65px, 10vw, 145px);
+    letter-spacing: -3px;
+    line-height: .82;
+}
+.hero-subtitle {
+    margin: 28px auto 38px;
+    max-width: 450px;
+    color: #aaa69c;
+    font-size: 12px;
+    line-height: 1.8;
+}
+.hero-button {
+    display: inline-block;
+    padding: 17px 34px;
+    border: 1px solid #a88d5b;
+    color: #eeeae0;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: .4s;
+}
+.hero-button:hover {
+    background: #a88d5b;
+    color: #0b0b0a;
+}
+/* ================= BOTTLE ================= */
+.bottle {
+    position: absolute;
+    width: 225px;
+    height: 350px;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    border-radius: 14px 14px 30px 30px;
+    background:
+        linear-gradient(
+            90deg,
+            #171512,
+            #4a4336 50%,
+            #151411
+        );
+    box-shadow:
+        0 45px 100px rgba(0,0,0,.9),
+        inset 10px 0 25px rgba(255,255,255,.05),
+        inset -10px 0 25px rgba(0,0,0,.5);
+    opacity: .92;
+}
+.bottle::before {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 70px;
+    top: -68px;
+    left: 50%;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(
+            90deg,
+            #171614,
+            #696052,
+            #171614
+        );
+    border-radius: 4px 4px 2px 2px;
+    box-shadow: 0 -8px 20px rgba(0,0,0,.4);
+}
+.bottle-label {
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 105px;
+    height: 140px;
+    border: 1px solid rgba(218,195,151,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.bottle-label strong {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
+    letter-spacing: 5px;
+    font-weight: 400;
+}
+.bottle-label span {
+    font-size: 7px;
+    letter-spacing: 3px;
+    color: #bca875;
+    margin-top: 12px;
+}
+.bottle-shadow {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    width: 450px;
+    height: 50px;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,.8);
+    filter: blur(25px);
+}
+/* ================= INTRO ================= */
+.intro {
+    padding: 150px 8%;
+    text-align: center;
+    background: #10100e;
+}
+.intro h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(45px, 6vw, 78px);
+    font-weight: 300;
+    line-height: .95;
+    margin-bottom: 30px;
+}
+.intro p {
+    max-width: 600px;
+    margin: auto;
+    color: #8e8b83;
+    font-size: 13px;
+    line-height: 2;
+}
+/* ================= COLLECTION ================= */
+.collection {
+    padding: 130px 7%;
+}
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 60px;
+}
+.section-top h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 62px;
+    font-weight: 300;
+}
+.section-top span {
+    color: #77736a;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.product {
+    background: #11110f;
+    border: 1px solid #22211e;
+    transition: .5s;
+}
+.product:hover {
+    transform: translateY(-8px);
+    border-color: #655538;
+}
+.product-image {
+    height: 520px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(
+            circle at center,
+            #343028,
+            #141310 65%
+        );
+}
+.product-bottle {
+    width: 125px;
+    height: 240px;
+    position: relative;
+    border-radius: 9px 9px 20px 20px;
+    background:
+        linear-gradient(
+            90deg,
+            #181714,
+            #5a5140,
+            #171613
+        );
+    box-shadow: 0 35px 55px rgba(0,0,0,.75);
+    transition: .5s;
+}
+.product:hover .product-bottle {
+    transform: translateY(-12px);
+}
+.product-bottle::before {
+    content: "";
+    position: absolute;
+    width: 48px;
+    height: 45px;
+    top: -43px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #27251f;
+}
+.product-bottle::after {
+    content: "VALÉRIE";
+    position: absolute;
+    top: 85px;
+    left: 12px;
+    right: 12px;
+    padding: 18px 5px;
+    border: 1px solid rgba(222,201,160,.45);
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.bottle-light {
+    background:
+        linear-gradient(
+            90deg,
+            #33302a,
+            #c0b59b,
+            #38352d
+        );
+}
+.bottle-dark {
+    background:
+        linear-gradient(
+            90deg,
+            #080808,
+            #3b3831,
+            #090909
+        );
+}
+.product-info {
+    padding: 28px;
+    border-top: 1px solid #22211e;
+}
+.product-info h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+.product-info p {
+    color: #77736a;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin: 8px 0 20px;
+}
+.product-price {
+    color: #c1a36d;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+/* ================= NOTES ================= */
+.notes {
+    padding: 150px 8%;
+    background: #0f0f0d;
+}
+.notes-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+.notes h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 65px;
+    font-weight: 300;
+    line-height: .9;
+}
+.notes-text {
+    color: #8c8981;
+    font-size: 13px;
+    line-height: 2;
+}
+.note-list {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+.note {
+    padding: 20px 0;
+    border-top: 1px solid #292824;
+}
+.note strong {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    color: #ddd6c8;
+}
+.note span {
+    font-size: 8px;
+    color: #716d65;
+    letter-spacing: 2px;
+}
+/* ================= PHILOSOPHY ================= */
+.philosophy {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 10%;
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.8)),
+        radial-gradient(circle at center, #373127, #090908 70%);
+}
+.philosophy-content {
+    max-width: 750px;
+}
+.philosophy h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(48px, 7vw, 90px);
+    font-weight: 300;
+    line-height: .9;
+    margin-bottom: 35px;
+}
+.philosophy p {
+    color: #aaa59a;
+    font-size: 13px;
+    line-height: 2;
+}
+/* ================= FOOTER ================= */
+footer {
+    padding: 75px 7%;
+    border-top: 1px solid #24231f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 24px;
+    letter-spacing: 6px;
+}
+footer p {
+    color: #5e5b55;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+/* ================= RESPONSIVE ================= */
+@media(max-width: 850px) {
+    .nav-links {
+        display: none;
+    }
+    .navbar {
+        justify-content: center;
+    }
+    .nav-button {
+        display: none;
+    }
+    .hero {
+        min-height: 750px;
+    }
+    .bottle {
+        width: 170px;
+        height: 270px;
+        opacity: .35;
+    }
+    .bottle-label {
+        top: 80px;
+        height: 105px;
+    }
+    .products {
+        grid-template-columns: 1fr;
+    }
+    .product-image {
+        height: 450px;
+    }
+    .notes-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .section-top h2 {
+        font-size: 48px;
+    }
+    footer {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+<!-- NAVIGATION -->
+<nav class="navbar">
+    <div class="logo">VALÉRIE</div>
+    <ul class="nav-links">
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#house">The House</a></li>
+        <li><a href="#notes">Notes</a></li>
+    </ul>
+    <a href="#collection" class="nav-button">
+        Explore
+    </a>
+</nav>
+<!-- HERO -->
+<section class="hero">
+    <div class="bottle-shadow"></div>
+    <div class="bottle">
+        <div class="bottle-label">
+            <strong>VALÉRIE</strong>
+            <span>PARFUM · 100 ML</span>
+        </div>
+    </div>
+    <div class="hero-content">
+        <div class="eyebrow">
+            Maison de Parfums · Paris
+        </div>
+        <h1>
+            L'Essence<br>
+            Noire
+        </h1>
+        <p class="hero-subtitle">
+            An intoxicating composition of dark woods,
+            warm amber and rare spices. Created for
+            those who leave an impression.
+        </p>
+        <a href="#collection" class="hero-button">
+            Discover the fragrance
+        </a>
+    </div>
+</section>
+<!-- INTRO -->
+<section class="intro" id="house">
+    <div class="eyebrow">
+        The House of Valérie
+    </div>
+    <h2>
+        Fragrance is<br>
+        memory made visible.
+    </h2>
+    <p>
+        VALÉRIE is an independent fragrance house devoted to
+        extraordinary compositions, rare ingredients and timeless
+        craftsmanship. Each creation is designed to become
+        unmistakably yours.
+    </p>
+</section>
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+    <div class="section-top">
+        <h2>La Collection</h2>
+        <span>
+            THREE SIGNATURE COMPOSITIONS
+        </span>
+    </div>
+    <div class="products">
+        <article class="product">
+            <div class="product-image">
+                <div class="product-bottle"></div>
+            </div>
+            <div class="product-info">
+                <h3>L'Essence Noire</h3>
+                <p>AMBER · OUD · VANILLA</p>
+                <div class="product-price">
+                    $295 · 100 ML
+                </div>
+            </div>
+        </article>
+        <article class="product">
+            <div class="product-image">
+                <div class="product-bottle bottle-light"></div>
+            </div>
+            <div class="product-info">
+                <h3>Maison Blanche</h3>
+                <p>CITRUS · IRIS · SANDALWOOD</p>
+                <div class="product-price">
+                    $265 · 100 ML
+                </div>
+            </div>
+        </article>
+        <article class="product">
+            <div class="product-image">
+                <div class="product-bottle bottle-dark"></div>
+            </div>
+            <div class="product-info">
+                <h3>Nuit Royale</h3>
+                <p>LEATHER · SAFFRON · CEDAR</p>
+                <div class="product-price">
+                    $320 · 100 ML
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+<!-- NOTES -->
+<section class="notes" id="notes">
+    <div class="notes-container">
+        <div>
+            <div class="eyebrow">
+                The Composition
+            </div>
+            <h2>
+                A fragrance<br>
+                in three acts.
+            </h2>
+        </div>
+        <div class="notes-text">
+            <p>
+                L'Essence Noire opens with a flash of rare spice,
+                unfolding into a warm heart before settling into
+                an unforgettable trail of woods and amber.
+            </p>
+            <div class="note-list">
+                <div class="note">
+                    <strong>Saffron</strong>
+                    <span>TOP NOTE</span>
+                </div>
+                <div class="note">
+                    <strong>Amber</strong>
+                    <span>HEART NOTE</span>
+                </div>
+                <div class="note">
+                    <strong>Oud</strong>
+                    <span>BASE NOTE</span>
+                </div>
+                <div class="note">
+                    <strong>Vanilla</strong>
+                    <span>BASE NOTE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+    <div class="philosophy-content">
+        <div class="eyebrow">
+            Our Philosophy
+        </div>
+        <h2>
+            Never loud.<br>
+            Always remembered.
+        </h2>
+        <p>
+            We believe luxury does not ask for attention.
+            It commands presence quietly — through quality,
+            detail and an unmistakable signature.
+        </p>
+    </div>
+</section>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">
+        VALÉRIE
+    </div>
+    <p>
+        © 2026 VALÉRIE MAISON DE PARFUMS
+    </p>
+</footer>
+</body>
+</html>
