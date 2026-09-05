@@ -1,1 +1,430 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÉLÉVÉR — Swiss Timepieces</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #080808;
+      color: #f4f1e8;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    /* NAVIGATION */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 7%;
+      background: rgba(8, 8, 8, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo {
+      font-size: 24px;
+      letter-spacing: 7px;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+    }
+    nav a {
+      color: #ddd8ca;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #c9a86a;
+    }
+    /* HERO */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      padding: 0 7%;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 50%, #29231a 0%, #11100e 28%, #080808 65%);
+    }
+    .hero-content {
+      max-width: 620px;
+      z-index: 2;
+    }
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: #c9a86a;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+    h1 {
+      font-size: clamp(60px, 9vw, 125px);
+      font-weight: normal;
+      line-height: 0.88;
+      letter-spacing: -5px;
+      margin-bottom: 35px;
+    }
+    .hero p {
+      color: #aaa59b;
+      font-family: Arial, sans-serif;
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .button {
+      display: inline-block;
+      padding: 17px 32px;
+      border: 1px solid #c9a86a;
+      color: #f4f1e8;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      transition: 0.3s;
+    }
+    .button:hover {
+      background: #c9a86a;
+      color: #080808;
+    }
+    /* WATCH VISUAL */
+    .watch {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(38vw, 520px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #eee9dc 0%, #b7b0a0 8%, #34322e 35%, #0c0c0c 70%);
+      border: 18px solid #24231f;
+      box-shadow:
+        0 0 0 8px #8d7853,
+        0 30px 100px rgba(0,0,0,0.9);
+    }
+    .watch::before {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border-radius: 50%;
+      border: 2px solid #9b8155;
+    }
+    .watch::after {
+      content: "ÉLÉVÉR";
+      position: absolute;
+      top: 27%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 5px;
+      color: #292720;
+    }
+    .hand {
+      position: absolute;
+      width: 2px;
+      background: #151515;
+      left: 50%;
+      bottom: 50%;
+      transform-origin: bottom;
+      border-radius: 5px;
+    }
+    .hand.hour {
+      height: 25%;
+      transform: rotate(35deg);
+    }
+    .hand.minute {
+      height: 34%;
+      transform: rotate(130deg);
+    }
+    .center {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #c9a86a;
+      left: calc(50% - 6.5px);
+      top: calc(50% - 6.5px);
+    }
+    /* COLLECTION */
+    section {
+      padding: 130px 7%;
+    }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+    .section-heading h2 {
+      font-size: clamp(40px, 6vw, 75px);
+      font-weight: normal;
+    }
+    .section-heading span {
+      color: #888;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    .collection {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    .card {
+      background: #11110f;
+      border: 1px solid #24231f;
+      padding: 30px;
+      transition: transform 0.4s, border-color 0.4s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: #8d7853;
+    }
+    .watch-display {
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle, #29251e 0%, #11110f 65%);
+      margin-bottom: 30px;
+    }
+    .mini-watch {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 12px solid #292825;
+      background: radial-gradient(circle, #d5d0c3, #777268);
+      box-shadow: 0 25px 50px #000;
+      position: relative;
+    }
+    .mini-watch.gold {
+      border-color: #9c8250;
+    }
+    .mini-watch.black {
+      background: radial-gradient(circle, #77746c, #181817);
+      border-color: #050505;
+    }
+    .mini-watch::after {
+      content: "É";
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      color: #222;
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+    .card h3 {
+      font-size: 25px;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+    .price {
+      color: #c9a86a;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+    /* STORY */
+    .story {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 100px;
+      background: #0d0d0b;
+    }
+    .story-image {
+      height: 600px;
+      background:
+        radial-gradient(circle at 50% 50%, #8d7853, #332c20 15%, #12110e 55%, #080808 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .story-watch {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 15px solid #24221d;
+      background: radial-gradient(circle, #e3ded1, #726d64);
+      box-shadow: 0 40px 100px #000;
+    }
+    .story-text h2 {
+      font-size: clamp(45px, 5vw, 70px);
+      font-weight: normal;
+      line-height: 1;
+      margin-bottom: 30px;
+    }
+    .story-text p {
+      color: #99958b;
+      font-family: Arial, sans-serif;
+      line-height: 1.9;
+      max-width: 500px;
+      margin-bottom: 25px;
+    }
+    /* FOOTER */
+    footer {
+      padding: 70px 7%;
+      border-top: 1px solid #25231f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer h3 {
+      letter-spacing: 6px;
+      font-size: 20px;
+    }
+    footer p {
+      color: #666;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+    }
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+      .hero {
+        justify-content: center;
+        text-align: center;
+      }
+      .hero-content {
+        margin-top: -100px;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .watch {
+        width: 350px;
+        opacity: 0.25;
+        right: 50%;
+        transform: translate(50%, -50%);
+      }
+      .collection {
+        grid-template-columns: 1fr;
+      }
+      .story {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .story-image {
+        height: 450px;
+      }
+      footer {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ÉLÉVÉR</div>
+    <ul>
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#story">Maison</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Swiss Horology · Est. 1987</div>
+        <h1>Time,<br>Elevated.</h1>
+        <p>
+          ÉLÉVÉR creates mechanical timepieces for those who understand
+          that true luxury is measured not in seconds, but in generations.
+        </p>
+        <a href="#collection" class="button">
+          Discover the Collection
+        </a>
+      </div>
+      <div class="watch">
+        <div class="hand hour"></div>
+        <div class="hand minute"></div>
+        <div class="center"></div>
+      </div>
+    </section>
+    <section id="collection">
+      <div class="section-heading">
+        <h2>The Collection</h2>
+        <span>01 — 03</span>
+      </div>
+      <div class="collection">
+        <div class="card">
+          <div class="watch-display">
+            <div class="mini-watch"></div>
+          </div>
+          <h3>Vérité</h3>
+          <div class="price">$8,900</div>
+        </div>
+        <div class="card">
+          <div class="watch-display">
+            <div class="mini-watch gold"></div>
+          </div>
+          <h3>Renaissance</h3>
+          <div class="price">$14,500</div>
+        </div>
+        <div class="card">
+          <div class="watch-display">
+            <div class="mini-watch black"></div>
+          </div>
+          <h3>Nocturne</h3>
+          <div class="price">$11,800</div>
+        </div>
+      </div>
+    </section>
+    <section class="story" id="story">
+      <div class="story-image">
+        <div class="story-watch"></div>
+      </div>
+      <div class="story-text">
+        <div class="eyebrow">The ÉLÉVÉR Philosophy</div>
+        <h2>Made slowly.<br>Made forever.</h2>
+        <p>
+          Every ÉLÉVÉR timepiece is assembled by hand by master
+          watchmakers. From the movement to the final polish, every
+          component exists for one purpose: to make something worth
+          passing down.
+        </p>
+        <p>
+          No shortcuts. No unnecessary excess. Just exceptional
+          mechanical watchmaking.
+        </p>
+        <a href="#" class="button">Our Craft</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <h3>ÉLÉVÉR</h3>
+    <p>© 2026 ÉLÉVÉR WATCH COMPANY · ALL RIGHTS RESERVED</p>
+  </footer>
+</body>
+</html>
